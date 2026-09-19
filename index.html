@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Anti-flash de tema: aplica la clase ANTES del primer paint -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.add('light-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
   
   <!-- Título SEO -->
   <title>Juan Salgado — Motion & Performance Creative</title>
@@ -41,18 +52,29 @@
   
   <header class="navbar">
     <div class="logo">JUAN SALGADO<span>.</span></div>
-    <nav>
+
+    <nav id="main-nav" class="main-nav">
+      <a href="#home">Home</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#benefits">Benefits</a>
       <a href="#experience">Experience</a>
+     <a href="assets/cv-juan-salgado.pdf" class="nav-cv" target="_blank" rel="noopener">Download CV</a>
       <a href="#contact" class="btn-primary">Let's talk</a>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">☀️ Light</button>
     </nav>
+
+    <div class="navbar-actions">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">☀️ Light</button>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
+  <div id="menu-overlay" class="menu-overlay"></div>
+
   <!-- Hero Section -->
-  <section class="hero">
+  <section id="home" class="hero">
     <div class="floating-icon icon-1" title="After Effects">
       <img src="assets/icons_hero/Adobe_After_Effects_CC_icon.svg.webp" alt="After Effects">
     </div>
@@ -70,9 +92,9 @@
     </div>
 
     <span class="badge">Available for work</span>
-    <h1>Motion & Performance Creative</h1>
+    <h1 class="split-title"><span class="split-word">Motion</span> <span class="split-word">&amp;</span> <span class="split-word">Performance</span> <span class="split-word">Creative</span></h1>
     <p>Visual design, motion graphics, and high-impact asset production optimized for digital scale and performance.</p>
-    <a href="#contact" class="btn-secondary">Let's Talk →</a>
+    <a href="#contact" class="btn-secondary magnetic-btn"><span class="magnetic-btn-text">Let's Talk →</span></a>
   </section>
 
   <!-- Work Showcase (Infinite Marquee Grid) -->
@@ -88,16 +110,16 @@
       <div class="work-marquee-row row-right">
         <div class="work-track">
           <!-- Set original -->
-          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"></div>
-          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video></div>
+          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">ZAS — The Art of Influence</span><span class="work-tools">After Effects · Kling AI</span></div></div>
+          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"><div class="work-overlay"><span class="work-title">Blasqem — Brand Renewal</span><span class="work-tools">Photoshop · Brand System</span></div></div>
+          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Kling 3 — Hero Showcase</span><span class="work-tools">Kling AI · Higgsfield</span></div></div>
+          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Flamebatch — Automation Tool</span><span class="work-tools">ExtendScript · After Effects</span></div></div>
           
           <!-- Duplicado para loop infinito fluido -->
-          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"></div>
-          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video></div>
+          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">ZAS — The Art of Influence</span><span class="work-tools">After Effects · Kling AI</span></div></div>
+          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"><div class="work-overlay"><span class="work-title">Blasqem — Brand Renewal</span><span class="work-tools">Photoshop · Brand System</span></div></div>
+          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Kling 3 — Hero Showcase</span><span class="work-tools">Kling AI · Higgsfield</span></div></div>
+          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Flamebatch — Automation Tool</span><span class="work-tools">ExtendScript · After Effects</span></div></div>
         </div>
       </div>
 
@@ -105,16 +127,16 @@
       <div class="work-marquee-row row-left">
         <div class="work-track">
           <!-- Set original -->
-          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"></div>
-          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video></div>
+          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Flamebatch — Automation Tool</span><span class="work-tools">ExtendScript · After Effects</span></div></div>
+          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Kling 3 — Hero Showcase</span><span class="work-tools">Kling AI · Higgsfield</span></div></div>
+          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"><div class="work-overlay"><span class="work-title">Blasqem — Brand Renewal</span><span class="work-tools">Photoshop · Brand System</span></div></div>
+          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">ZAS — The Art of Influence</span><span class="work-tools">After Effects · Kling AI</span></div></div>
 
           <!-- Duplicado para loop infinito fluido -->
-          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video></div>
-          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"></div>
-          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video></div>
+          <div class="work-card clean-video"><video src="assets/Flamebatch.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Flamebatch — Automation Tool</span><span class="work-tools">ExtendScript · After Effects</span></div></div>
+          <div class="work-card clean-video"><video src="assets/kling-3-hero-preview.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">Kling 3 — Hero Showcase</span><span class="work-tools">Kling AI · Higgsfield</span></div></div>
+          <div class="work-card clean-video"><img src="assets/brand-renewal-cover.jpg" alt="Brand Renewal"><div class="work-overlay"><span class="work-title">Blasqem — Brand Renewal</span><span class="work-tools">Photoshop · Brand System</span></div></div>
+          <div class="work-card clean-video"><video src="assets/vieo_zas_eadf6d4a08.mp4" autoplay loop muted playsinline></video><div class="work-overlay"><span class="work-title">ZAS — The Art of Influence</span><span class="work-tools">After Effects · Kling AI</span></div></div>
         </div>
       </div>
 
@@ -279,28 +301,46 @@
       
       <div class="contact-header">
         <span class="badge">Contact</span>
-        <h2 class="section-title">READY?<br>WE ARE.</h2>
+        <h2 class="section-title">READY?<br>I'AM.</h2>
         <p class="contact-subtitle">Do you have a project in mind, or do you want to scale your advertising production? Let's talk.</p>
       </div>
 
-      <form class="contact-form" onsubmit="event.preventDefault();">
+      <form id="contact-form" class="contact-form">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Your name" required>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
         </div>
 
         <div class="form-group">
           <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="your@email.com" required>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
         </div>
 
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+          <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
         </div>
 
-        <button type="submit" class="btn-primary btn-submit">Send Message →</button>
+        <button type="submit" class="btn-primary btn-submit">
+          <span class="btn-submit-label">Send Message →</span>
+          <span class="btn-submit-spinner" aria-hidden="true"></span>
+          <svg class="btn-submit-check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="check-circle" cx="26" cy="26" r="23" fill="none"/>
+            <path class="check-mark" fill="none" d="M14 27l7 7 16-16"/>
+          </svg>
+        </button>
+        <p id="form-feedback" class="form-feedback" aria-live="polite"></p>
       </form>
+
+      <div id="contact-success" class="contact-success" aria-live="polite">
+        <svg class="success-icon" viewBox="0 0 52 52" aria-hidden="true">
+          <circle class="success-circle" cx="26" cy="26" r="23" fill="none"/>
+          <path class="success-check" fill="none" d="M14 27l7 7 16-16"/>
+        </svg>
+        <h3>Message sent!</h3>
+        <p>Thanks for reaching out — I'll reply within a day or two.</p>
+        <button type="button" id="contact-reset" class="btn-secondary">Send another message</button>
+      </div>
 
     </div>
   </section>
